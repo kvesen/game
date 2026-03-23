@@ -1,3 +1,6 @@
+import { AbilityLoadout } from '../heroes/loadout';
+import { AttunementId } from '../heroes/attunement';
+
 export interface MiningExpedition {
   tier: 'QUICK' | 'STANDARD' | 'DEEP';
   startedAt: Date;
@@ -22,6 +25,8 @@ export interface PlayerHero {
   bonusAtk: number;
   bonusDef: number;
   bonusSpd: number;
+  loadout?: AbilityLoadout;
+  attunementId?: AttunementId;
 }
 
 export interface PlayerProfile {

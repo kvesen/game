@@ -9,13 +9,25 @@ export type EffectType =
   | 'STAT_DEBUFF'
   | 'REGEN'
   | 'DAMAGE_REDUCE'
-  | 'DODGE';
+  | 'DODGE'
+  | 'DAMAGE_REFLECT'
+  | 'POISON'
+  | 'RESONANCE_STEAL'
+  | 'CLEANSE'
+  | 'ATK_DEBUFF'
+  | 'DEF_BUFF'
+  | 'SPD_BUFF'
+  | 'DAMAGE_IGNORE_SHIELD'
+  | 'SELF_COOLDOWN_PENALTY'
+  | 'MIRROR_IMAGE';
 
 export interface AbilityEffect {
   type: EffectType;
   value?: number;
   duration?: number;
   target?: 'SELF' | 'OPPONENT';
+  /** For COOLDOWN_REDUCE: reduce a specific ability's cooldown instead of all */
+  targetAbilityId?: string;
 }
 
 export interface AbilityDefinition {

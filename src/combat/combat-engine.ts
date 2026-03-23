@@ -6,13 +6,24 @@ export { ActionSelection, RoundRecord, CombatState };
 
 export class CombatEngine {
   private state: CombatState;
+  private rng: () => number;
 
-  constructor(player1Hero: Hero, player2Hero: Hero) {
+  constructor(player1Hero: Hero, player2Hero: Hero, rng: () => number = Math.random) {
+    this.rng = rng;
+
+    // Apply START_RESONANCE attunement effect
+    let p1StartResonance = 0;
+    let p2StartResonance = 0;
+    const p1StartEffect = player1Hero.attunement?.effects.find(e => e.type === 'START_RESONANCE');
+    if (p1StartEffect) p1StartResonance = p1StartEffect.value;
+    const p2StartEffect = player2Hero.attunement?.effects.find(e => e.type === 'START_RESONANCE');
+    if (p2StartEffect) p2StartResonance = p2StartEffect.value;
+
     this.state = {
       player1Hero,
       player2Hero,
-      player1Resonance: 0,
-      player2Resonance: 0,
+      player1Resonance: p1StartResonance,
+      player2Resonance: p2StartResonance,
       roundNumber: 0,
       actionHistory: [],
       isOver: false,
@@ -29,7 +40,7 @@ export class CombatEngine {
       throw new Error('Combat is already over');
     }
 
-    const record = resolveRound(this.state, p1Action, p2Action);
+    const record = resolveRound(this.state, p1Action, p2Action, this.rng);
     this.checkEndConditions();
 
     return record;
