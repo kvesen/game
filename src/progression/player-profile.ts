@@ -29,6 +29,15 @@ export interface PlayerHero {
   attunementId?: AttunementId;
 }
 
+export type DungeonTier = 'EASY' | 'MEDIUM' | 'HARD';
+
+export interface DungeonRun {
+  tier: DungeonTier;
+  startedAt: Date;
+  duration: number;
+  completed: boolean;
+}
+
 export interface PlayerProfile {
   id: string;
   username: string;
@@ -36,4 +45,6 @@ export interface PlayerProfile {
   heroes: PlayerHero[];
   activeMining?: MiningExpedition;
   activeTraining?: TrainingSession;
+  veilstone?: number;
+  activeDungeon?: DungeonRun;
 }
