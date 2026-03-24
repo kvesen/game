@@ -1,0 +1,203 @@
+/* ===========================
+   Result Screen
+   =========================== */
+
+#result-screen {
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-overlay-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.result-overlay-bg.victory {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(240, 192, 64, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(78, 203, 113, 0.08) 0%, transparent 70%);
+}
+
+.result-overlay-bg.defeat {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(232, 64, 96, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(155, 89, 245, 0.08) 0%, transparent 70%);
+}
+
+.result-overlay-bg.draw {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+}
+
+.result-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* --- Result icon --- */
+.result-icon {
+  font-size: 80px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+}
+
+.result-icon.victory { filter: drop-shadow(0 0 30px rgba(240, 192, 64, 0.8)); }
+.result-icon.defeat  { filter: drop-shadow(0 0 30px rgba(232, 64, 96, 0.7)); }
+.result-icon.draw    { filter: drop-shadow(0 0 30px rgba(74, 158, 255, 0.7)); }
+
+/* --- Result title --- */
+.result-title {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  animation: slide-up 0.5s ease;
+}
+
+.result-title.victory {
+  background: linear-gradient(135deg, #f59e0b, #fde68a, #f0c040);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(240, 192, 64, 0.5));
+}
+
+.result-title.defeat {
+  background: linear-gradient(135deg, #e84060, #ff8fa0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(232, 64, 96, 0.5));
+}
+
+.result-title.draw {
+  background: linear-gradient(135deg, #4a9eff, #90caf9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.5));
+}
+
+/* --- Subtitle --- */
+.result-subtitle {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 16px;
+  animation: slide-up 0.6s ease 0.1s both;
+}
+
+/* --- Stats panel --- */
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  animation: slide-up 0.6s ease 0.2s both;
+}
+
+.result-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.result-stat-icon {
+  font-size: 24px;
+}
+
+.result-stat-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.result-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* --- XP Bar --- */
+.result-xp-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slide-up 0.6s ease 0.3s both;
+}
+
+.result-xp-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.result-xp-gained {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.result-xp-bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.result-xp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7c3aed, #c77dff);
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+  box-shadow: 0 0 10px rgba(155, 89, 245, 0.5);
+}
+
+/* --- Buttons --- */
+.result-actions {
+  display: flex;
+  gap: 16px;
+  animation: slide-up 0.6s ease 0.4s both;
+}
+
+/* --- Divider with gem --- */
+.result-divider {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+}
+
+/* --- Celebration particles --- */
+.result-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.result-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particle-rise 3s ease-in-out infinite;
+}

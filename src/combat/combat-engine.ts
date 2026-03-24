@@ -1,8 +1,8 @@
 import { Hero } from '../heroes/hero';
-import { ActionSelection, CombatState, RoundRecord } from './combat-state';
+import type { ActionSelection, CombatState, RoundRecord } from './combat-state';
 import { resolveRound } from './resolution';
 
-export { ActionSelection, RoundRecord, CombatState };
+export type { ActionSelection, RoundRecord, CombatState };
 
 export class CombatEngine {
   private state: CombatState;
