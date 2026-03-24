@@ -1,0 +1,205 @@
+/* ===========================
+   Title Screen Styles
+   =========================== */
+
+#title-screen {
+  background: var(--bg-deep);
+  position: relative;
+  user-select: none;
+}
+
+.title-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+/* --- Logo --- */
+.title-logo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-logo-icon {
+  font-size: 72px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.8));
+}
+
+.title-main {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw, 90px);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  line-height: 1;
+  background: linear-gradient(
+    135deg,
+    #a0c4ff 0%,
+    #ffffff 30%,
+    #c77dff 60%,
+    #f0c040 85%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  filter: drop-shadow(0 0 30px rgba(74, 158, 255, 0.5));
+  text-shadow: none;
+}
+
+.title-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(12px, 2vw, 16px);
+  letter-spacing: 0.4em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: -4px;
+}
+
+/* --- Divider --- */
+.title-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 320px;
+}
+
+.title-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+  opacity: 0.5;
+}
+
+.title-divider-gem {
+  color: var(--accent-gold);
+  font-size: 12px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* --- Flavor text --- */
+.title-flavor {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 13px;
+  max-width: 360px;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* --- Play Button --- */
+.title-play-btn {
+  margin-top: 8px;
+  padding: 18px 56px;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #1d4ed8 0%, #4a9eff 50%, #7c3aed 100%);
+  background-size: 200% auto;
+  color: white;
+  font-weight: 700;
+  box-shadow:
+    0 0 30px rgba(74, 158, 255, 0.5),
+    0 8px 32px rgba(0,0,0,0.5);
+  animation: glow-pulse 3s ease-in-out infinite;
+  transition: all var(--transition-normal);
+}
+
+.title-play-btn:hover {
+  background-position: right center;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 0 50px rgba(74, 158, 255, 0.7),
+    0 12px 40px rgba(0,0,0,0.6);
+}
+
+/* --- Archetype preview cards --- */
+.title-heroes {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.title-hero-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-card);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: all var(--transition-normal);
+}
+
+.title-hero-chip:hover {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.chip-icon {
+  font-size: 14px;
+}
+
+/* --- Version / Credits --- */
+.title-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.title-version {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  font-family: var(--font-heading);
+}
+
+.title-credits {
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+/* --- Floating particles --- */
+.title-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.title-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particle-rise 4s ease-in-out infinite;
+}
+
+/* --- Glow rings --- */
+.title-glow-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 158, 255, 0.15);
+  animation: spin-slow 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}

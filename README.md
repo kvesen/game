@@ -1,10 +1,127 @@
-# Shardfall Online
+# AETHERVEIL ⚔️
 
-A strategic multiplayer game blending timed resource management with a cooldown-based card combat system.
+**A multiplayer hero combat game — now playable in your browser!**
 
-## Overview
+Aetherveil is a strategic hero combat game featuring three distinct archetypes, a resonance-based combat system, ability loadout customization, and shard attunements. Battle an AI opponent in a fully animated browser UI.
 
-Players collect hero archetypes, level them up through timed activities (mining, training), and battle in real-time PvP with tactical ability choices.
+---
+
+## 🎮 Playing in the Browser
+
+### Quick Start
+
+```bash
+npm install
+npm run dev
+```
+
+Then open **http://localhost:5173** in your browser.
+
+### Production Build
+
+```bash
+npm run build:web
+```
+
+Output goes to `dist/web/`.
+
+---
+
+## 🗺️ Game Screens
+
+### 1. Title Screen
+- Animated logo with glowing particle effects
+- Dark fantasy atmosphere with floating particles and star field
+
+### 2. Hero Selection
+- Pick from **Shardwarden** 🛡️, **Aetherspark** ⚡, or **Rootcaller** 🌿
+- Visual stat bars, flavor text, role tags
+- Hover effects and selection glow
+
+### 3. Loadout Customization
+- Choose **3 abilities** from your hero's pool of 10
+- Select an **Attunement** passive (Volatile, Stabilized, Fractured, Resonant, Prismatic)
+- Real-time validation and slot display
+
+### 4. Combat
+- Animated HP bars, resonance crystal display, status effects
+- Action buttons with cooldown overlays, resonance costs, type-colored borders
+- **Overcharge toggle** — spend +3 resonance for 1.5× effect
+- AI opponent with adaptive strategy (defensive when low HP, aggressive when you're low)
+- Color-coded combat log (damage=red, heal=green, shield=blue, utility=gold, dodge=purple)
+
+### 5. Victory / Defeat Screen
+- Animated result with XP gained, round count
+- Celebration particle effects on victory
+
+---
+
+## 🏟️ Gameplay
+
+### Heroes
+
+| Archetype | HP | ATK | DEF | SPD | Role |
+|-----------|-----|-----|-----|-----|------|
+| **Shardwarden** 🛡️ | 120 | 8 | 14 | 6 | Tank / Defensive |
+| **Aetherspark** ⚡ | 80 | 16 | 6 | 14 | Glass Cannon / Speed |
+| **Rootcaller** 🌿 | 100 | 10 | 10 | 10 | Sustain / Balanced |
+
+### Combat System
+- Simultaneous action selection each round
+- **Priority Resolution**: DEFENSIVE → UTILITY → OFFENSIVE
+- **Resonance**: Gain +1 per round; spend to use abilities
+- **Overcharge**: Pay 3 extra Resonance for 1.5× effect
+- **Basic Attack**: Free action; ATK damage minus half opponent DEF
+- Round limit: 25 rounds (higher HP% wins at timeout)
+
+### Attunements
+| Shard | Effect |
+|-------|--------|
+| **Volatile** 💥 | Overcharges cost −1 Resonance, but −15% overcharge bonus DMG |
+| **Stabilized** 🔷 | +1 Resonance/turn, but +1 all cooldowns |
+| **Fractured** 🔥 | +20% damage dealt, but −15% max HP |
+| **Resonant** 💚 | +30% healing, but +10% damage taken |
+| **Prismatic** ✨ | Start with 3 Resonance + 10% crit chance |
+
+---
+
+## 🛠️ Development
+
+### Tech Stack
+- **Engine**: TypeScript (CommonJS, tested with Jest)
+- **Browser UI**: Vanilla TypeScript + CSS, bundled with **Vite**
+- **Fonts**: Cinzel (headers) + Merriweather (body) via Google Fonts
+- **No frameworks** — pure DOM manipulation for maximum performance
+
+### Project Structure
+
+```
+src/                      — Game engine (TypeScript, CommonJS)
+├── heroes/               — Hero definitions, loadouts, attunements
+├── combat/               — Combat engine and resolution
+├── progression/          — Mining, training, leveling, crafting
+├── matchmaking/          — Elo, queue, leaderboard
+├── pve/                  — Dungeon system
+└── social/               — Friends, alliances, friend battles
+
+web/                      — Browser UI (Vite + ESM TypeScript)
+├── index.html
+├── vite.config.ts
+└── src/
+    ├── main.ts           — Entry point, screen transitions
+    ├── screens/          — Title, Hero Select, Loadout, Combat, Result
+    ├── ai/               — AI opponent logic
+    ├── styles/           — CSS per screen + global theme
+    └── utils/            — DOM helpers, animation utilities
+```
+
+### Running Tests
+
+```bash
+npm test              # Run all 223 tests
+npm run test:watch    # Watch mode
+npm run build         # Compile TypeScript engine
+```
 
 ---
 

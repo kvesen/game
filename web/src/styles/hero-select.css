@@ -1,0 +1,271 @@
+/* ===========================
+   Hero Selection Screen
+   =========================== */
+
+#hero-select-screen {
+  background: var(--bg-deep);
+  position: relative;
+  overflow-y: auto;
+}
+
+.hero-select-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  min-height: 100%;
+  justify-content: center;
+}
+
+.hero-select-header {
+  text-align: center;
+}
+
+.hero-select-header h2 {
+  font-size: clamp(24px, 4vw, 40px);
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.hero-select-header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* --- Hero Cards Grid --- */
+.hero-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .hero-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
+/* --- Hero Card --- */
+.hero-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dim);
+  border-radius: var(--radius-xl);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.hero-card.shardwarden::before { background: linear-gradient(90deg, #6ec6ff, #2563eb); }
+.hero-card.aetherspark::before { background: linear-gradient(90deg, #c77dff, #7c3aed); }
+.hero-card.rootcaller::before  { background: linear-gradient(90deg, #7be495, #16a34a); }
+
+.hero-card:hover::before,
+.hero-card.selected::before { opacity: 1; }
+
+.hero-card:hover {
+  border-color: var(--border-subtle);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-card.shardwarden:hover,
+.hero-card.shardwarden.selected {
+  border-color: rgba(110, 198, 255, 0.4);
+  box-shadow: 0 8px 40px rgba(110, 198, 255, 0.2);
+}
+
+.hero-card.aetherspark:hover,
+.hero-card.aetherspark.selected {
+  border-color: rgba(199, 125, 255, 0.4);
+  box-shadow: 0 8px 40px rgba(199, 125, 255, 0.2);
+}
+
+.hero-card.rootcaller:hover,
+.hero-card.rootcaller.selected {
+  border-color: rgba(123, 228, 149, 0.4);
+  box-shadow: 0 8px 40px rgba(123, 228, 149, 0.2);
+}
+
+.hero-card.selected {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Card header */
+.hero-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-card-icon {
+  font-size: 48px;
+  line-height: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-card-title h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.shardwarden .hero-card-title h3 { color: var(--color-shardwarden); }
+.aetherspark .hero-card-title h3 { color: var(--color-aetherspark); }
+.rootcaller  .hero-card-title h3 { color: var(--color-rootcaller); }
+
+.hero-archetype-badge {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Flavor */
+.hero-card-flavor {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border-left: 3px solid var(--border-dim);
+  padding-left: 12px;
+}
+
+/* Stats */
+.hero-card-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  width: 28px;
+  text-transform: uppercase;
+}
+
+.stat-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stat-bar-fill.hp  { background: linear-gradient(90deg, #16a34a, #4ece71); }
+.stat-bar-fill.atk { background: linear-gradient(90deg, #b91c1c, #e84060); }
+.stat-bar-fill.def { background: linear-gradient(90deg, #1d4ed8, #4a9eff); }
+.stat-bar-fill.spd { background: linear-gradient(90deg, #854d0e, #f0c040); }
+
+.stat-value {
+  font-size: 12px;
+  color: var(--text-secondary);
+  width: 28px;
+  text-align: right;
+}
+
+/* Tag */
+.hero-card-role {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.role-tag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tag-tank   { background: rgba(74, 158, 255, 0.15); color: #6ec6ff; border: 1px solid rgba(110,198,255,0.3); }
+.tag-dps    { background: rgba(232, 64, 96, 0.15);  color: #ff8fa0; border: 1px solid rgba(255,143,160,0.3); }
+.tag-sustain{ background: rgba(78, 203, 113, 0.15); color: #7be495; border: 1px solid rgba(123,228,149,0.3); }
+
+/* Select button */
+.hero-select-btn {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  width: 100%;
+}
+
+.shardwarden .hero-select-btn {
+  background: linear-gradient(135deg, #1e40af, #6ec6ff);
+  color: #0a1020;
+  box-shadow: 0 4px 16px rgba(110, 198, 255, 0.3);
+}
+.aetherspark .hero-select-btn {
+  background: linear-gradient(135deg, #4c1d95, #c77dff);
+  color: #120825;
+  box-shadow: 0 4px 16px rgba(199, 125, 255, 0.3);
+}
+.rootcaller .hero-select-btn {
+  background: linear-gradient(135deg, #14532d, #7be495);
+  color: #071508;
+  box-shadow: 0 4px 16px rgba(123, 228, 149, 0.3);
+}
+
+/* Selected check overlay */
+.hero-card-check {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--transition-normal);
+  box-shadow: 0 0 16px rgba(78, 203, 113, 0.6);
+}
+
+.hero-card.selected .hero-card-check {
+  opacity: 1;
+  transform: scale(1);
+}
